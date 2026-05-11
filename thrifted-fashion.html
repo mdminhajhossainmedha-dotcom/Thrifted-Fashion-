@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thrifted Fashion</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #1a0a00;
+  --accent: #c8974a;
+  --accent2: #e8c98a;
+  --red: #c0392b;
+  --bg: #faf7f2;
+  --card: #ffffff;
+  --text: #1a1a1a;
+  --muted: #7a6e62;
+  --border: #e8dfd0;
+  --dark: #2c1a0e;
+  --light-accent: #fff8ee;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Hind Siliguri', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ===== ANNOUNCE BAR ===== */
+.announce-bar {
+  background: var(--primary);
+  color: var(--accent2);
+  text-align: center;
+  padding: 9px 20px;
+  font-size: 0.82rem;
+  letter-spacing: 1.8px;
+  font-weight: 500;
+}
+
+/* ===== NAV ===== */
+nav {
+  background: #fff;
+  border-bottom: 2px solid var(--border);
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.logo-main {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--primary);
+  letter-spacing: -0.5px;
+}
+
+.logo-sub {
+  font-size: 0.65rem;
+  color: var(--accent);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+  font-size: 0.92rem;
+  transition: color 0.2s;
+  letter-spacing: 0.3px;
+}
+
+.nav-links a:hover { color: var(--accent); }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.btn-admin {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  letter-spacing: 0.3px;
+}
+
+.btn-admin:hover { background: var(--accent); transform: translateY(-1px); }
+
+.cart-btn {
+  background: none;
+  border: 2px solid var(--border);
+  padding: 7px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  position: relative;
+  transition: border-color 0.2s;
+}
+
+.cart-btn:hover { border-color: var(--accent); }
+
+.cart-count {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: var(--red);
+  color: #fff;
+  font-size: 0.65rem;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+/* ===== HERO ===== */
+.hero {
+  background: linear-gradient(135deg, var(--primary) 0%, #3d2510 50%, #6b3d1e 100%);
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  padding: 0 8%;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(200,151,74,0.2) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -100px;
+  left: 30%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(200,151,74,0.1) 0%, transparent 60%);
+  border-radius: 50%;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(200,151,74,0.2);
+  border: 1px solid rgba(200,151,74,0.4);
+  color: var(--accent2);
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.4rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 18px;
+}
+
+.hero h1 span { color: var(--accent2); font-style: italic; }
+
+.hero p {
+  color: rgba(255,255,255,0.75);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 32px;
+  font-weight: 300;
+}
+
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  padding: 13px 30px;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.3px;
+}
+
+.btn-primary:hover { background: var(--accent2); color: var(--primary); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(200,151,74,0.4); }
+
+.btn-outline {
+  background: transparent;
+  color: #fff;
+  padding: 13px 30px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-radius: 8px;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-outline:hover { border-color: var(--accent2); color: var(--accent2); }
+
+.hero-stats {
+  display: flex;
+  gap: 36px;
+  margin-top: 44px;
+}
+
+.stat { text-align: left; }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--accent2); }
+.stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.55); letter-spacing: 0.5px; }
+
+/* ===== CATEGORIES ===== */
+.categories {
+  padding: 60px 5%;
+  background: #fff;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-label {
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.cat-card {
+  background: var(--light-accent);
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  padding: 24px 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.cat-card:hover, .cat-card.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(26,10,0,0.2);
+}
+
+.cat-icon { font-size: 2rem; margin-bottom: 10px; }
+.cat-name { font-weight: 600; font-size: 0.92rem; }
+.cat-count { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
+.cat-card:hover .cat-count, .cat-card.active .cat-count { color: rgba(255,255,255,0.6); }
+
+/* ===== PRODUCTS ===== */
+.products-section {
+  padding: 60px 5%;
+  background: var(--bg);
+}
+
+.products-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.filter-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 7px 16px;
+  border: 2px solid var(--border);
+  border-radius: 20px;
+  background: #fff;
+  color: var(--muted);
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 0.83rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover, .filter-btn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.product-card {
+  background: var(--card);
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: all 0.3s;
+  position: relative;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+}
+
+.product-img-wrap {
+  position: relative;
+  background: var(--light-accent);
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.product-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+
+.product-card:hover .product-img-wrap img { transform: scale(1.05); }
+
+.product-img-placeholder {
+  font-size: 4rem;
+  opacity: 0.4;
+}
+
+.product-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.badge-new { background: #27ae60; color: #fff; }
+.badge-sale { background: var(--red); color: #fff; }
+.badge-hot { background: var(--accent); color: #fff; }
+
+.product-actions-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  padding: 20px 12px 12px;
+  transform: translateY(100%);
+  transition: transform 0.3s;
+  display: flex;
+  gap: 8px;
+}
+
+.product-card:hover .product-actions-overlay { transform: translateY(0); }
+
+.quick-add {
+  flex: 1;
+  background: #fff;
+  border: none;
+  padding: 8px;
+  border-radius: 7px;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.quick-add:hover { background: var(--accent); color: #fff; }
+
+.wishlist-btn {
+  background: #fff;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+
+.wishlist-btn:hover { background: #ffe4e4; }
+
+.product-info { padding: 16px; }
+
+.product-category {
+  font-size: 0.72rem;
+  color: var(--accent);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.product-name {
+  font-weight: 600;
+  font-size: 0.96rem;
+  color: var(--primary);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.product-desc {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 12px;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.price-box { display: flex; align-items: baseline; gap: 6px; }
+.price-main { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--primary); }
+.price-old { font-size: 0.82rem; color: var(--muted); text-decoration: line-through; }
+
+.add-cart-btn {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 7px;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.add-cart-btn:hover { background: var(--accent); transform: scale(1.03); }
+
+.no-products {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--muted);
+}
+
+.no-products .icon { font-size: 3.5rem; margin-bottom: 16px; }
+.no-products h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 8px; color: var(--primary); }
+
+/* ===== MODAL OVERLAY ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+}
+
+.modal-overlay.show { display: flex; }
+
+.modal {
+  background: #fff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 540px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header {
+  padding: 24px 28px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: var(--muted);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.modal-close:hover { background: #f0f0f0; }
+
+.modal-body { padding: 24px 28px 28px; }
+
+/* ===== FORM STYLES ===== */
+.form-group { margin-bottom: 18px; }
+
+label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 6px;
+  letter-spacing: 0.3px;
+}
+
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 0.92rem;
+  color: var(--text);
+  background: #fff;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(200,151,74,0.12);
+}
+
+.form-textarea { resize: vertical; min-height: 80px; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+.form-submit {
+  width: 100%;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 13px;
+  border-radius: 8px;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 6px;
+}
+
+.form-submit:hover { background: var(--accent); transform: translateY(-1px); }
+
+.img-preview-wrap {
+  margin-top: 10px;
+  border: 2px dashed var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+  background: var(--light-accent);
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.img-preview-wrap:hover { border-color: var(--accent); }
+
+.img-preview-wrap img {
+  max-height: 120px;
+  max-width: 100%;
+  border-radius: 8px;
+  display: none;
+}
+
+.img-placeholder-text { font-size: 0.83rem; color: var(--muted); }
+.img-placeholder-icon { font-size: 2rem; margin-bottom: 6px; }
+
+/* ===== ADMIN PANEL ===== */
+.admin-products-list { margin-top: 6px; }
+
+.admin-product-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background: var(--light-accent);
+}
+
+.admin-product-thumb {
+  width: 50px;
+  height: 50px;
+  background: var(--border);
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  overflow: hidden;
+}
+
+.admin-product-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+.admin-product-info { flex: 1; min-width: 0; }
+.admin-product-name { font-weight: 700; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.admin-product-meta { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+
+.admin-actions { display: flex; gap: 6px; flex-shrink: 0; }
+
+.btn-edit {
+  background: #f0f7ff;
+  color: #2980b9;
+  border: 1px solid #b8d9f5;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  cursor: pointer;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-edit:hover { background: #2980b9; color: #fff; }
+
+.btn-delete {
+  background: #fff0f0;
+  color: var(--red);
+  border: 1px solid #f5c0c0;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  cursor: pointer;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-delete:hover { background: var(--red); color: #fff; }
+
+/* ===== CART DRAWER ===== */
+.cart-drawer {
+  position: fixed;
+  top: 0; right: -420px;
+  width: 400px;
+  height: 100vh;
+  background: #fff;
+  z-index: 3000;
+  box-shadow: -10px 0 50px rgba(0,0,0,0.2);
+  transition: right 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-drawer.open { right: 0; }
+
+.cart-drawer-header {
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cart-drawer-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.cart-drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 24px;
+}
+
+.cart-item {
+  display: flex;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.cart-item-img {
+  width: 60px;
+  height: 60px;
+  background: var(--light-accent);
+  border-radius: 8px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  overflow: hidden;
+}
+
+.cart-item-img img { width: 100%; height: 100%; object-fit: cover; }
+.cart-item-info { flex: 1; }
+.cart-item-name { font-weight: 600; font-size: 0.88rem; margin-bottom: 4px; }
+.cart-item-price { color: var(--accent); font-weight: 700; font-size: 0.9rem; }
+.cart-item-remove { background: none; border: none; color: var(--red); cursor: pointer; font-size: 1.1rem; }
+
+.cart-drawer-footer {
+  padding: 20px 24px;
+  border-top: 2px solid var(--border);
+}
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 14px;
+}
+
+.cart-total span:last-child {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: var(--accent);
+}
+
+.btn-checkout {
+  width: 100%;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-checkout:hover { background: var(--primary); }
+
+.empty-cart {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--muted);
+}
+
+.cart-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 2999;
+  display: none;
+}
+
+.cart-overlay.show { display: block; }
+
+/* ===== TOAST ===== */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--primary);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  z-index: 9999;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  white-space: nowrap;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+}
+
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--primary);
+  color: rgba(255,255,255,0.7);
+  padding: 50px 5% 30px;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-brand .logo-main { color: var(--accent2); }
+.footer-brand .logo-sub { color: rgba(255,255,255,0.4); }
+.footer-brand p { margin-top: 14px; font-size: 0.88rem; line-height: 1.7; }
+
+.footer-col h4 {
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 9px; }
+.footer-col ul a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+.footer-col ul a:hover { color: var(--accent2); }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 22px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ===== ADMIN PASSWORD ===== */
+.admin-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 22px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.admin-tab {
+  flex: 1;
+  padding: 10px;
+  background: none;
+  border: none;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--muted);
+}
+
+.admin-tab.active { background: var(--primary); color: #fff; }
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2.2rem; }
+  .nav-links { display: none; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .hero-stats { gap: 20px; }
+  .cart-drawer { width: 100%; right: -100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCE BAR -->
+<div class="announce-bar">
+  🎉 বিশেষ অফার: ৳500+ কেনাকাটায় ফ্রি ডেলিভারি সারা বাংলাদেশে! &nbsp;|&nbsp; Free Delivery on orders ৳500+
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <span class="logo-main">Thrifted Fashion</span>
+    <span class="logo-sub">কাপড় ও ইলেকট্রনিক্স</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#products">Products</a></li>
+    <li><a href="#categories">Categories</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="btn-admin" onclick="openAdminModal()">⚙️ Admin Panel</button>
+    <button class="cart-btn" onclick="toggleCart()">
+      🛒
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">✨ New Collection Available</div>
+    <h1>Style এখন <span>সবার নাগালে</span></h1>
+    <p>Quality কাপড় আর Electronics — সেরা দামে। প্রতিটি পণ্য সযত্নে selected, আপনার জন্যই।</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Shop Now →</button>
+      <button class="btn-outline" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'})">Browse Categories</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num" id="totalProducts">0</div>
+        <div class="stat-label">Products</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Authentic</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">⭐ 4.9</div>
+        <div class="stat-label">Rating</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories" id="categories">
+  <div class="section-header">
+    <div class="section-label">Browse by</div>
+    <h2 class="section-title">Categories</h2>
+  </div>
+  <div class="cat-grid" id="catGrid">
+    <a class="cat-card active" onclick="filterProducts('all'); setActiveCategory(this)">
+      <div class="cat-icon">🏪</div>
+      <div class="cat-name">All Products</div>
+      <div class="cat-count" id="catAll">0 items</div>
+    </a>
+    <a class="cat-card" onclick="filterProducts('পুরুষ'); setActiveCategory(this)">
+      <div class="cat-icon">👔</div>
+      <div class="cat-name">পুরুষের পোশাক</div>
+      <div class="cat-count" id="catMen">0 items</div>
+    </a>
+    <a class="cat-card" onclick="filterProducts('মহিলা'); setActiveCategory(this)">
+      <div class="cat-icon">👗</div>
+      <div class="cat-name">মহিলার পোশাক</div>
+      <div class="cat-count" id="catWomen">0 items</div>
+    </a>
+    <a class="cat-card" onclick="filterProducts('ইলেকট্রনিক্স'); setActiveCategory(this)">
+      <div class="cat-icon">📱</div>
+      <div class="cat-name">Electronics</div>
+      <div class="cat-count" id="catElec">0 items</div>
+    </a>
+    <a class="cat-card" onclick="filterProducts('অন্যান্য'); setActiveCategory(this)">
+      <div class="cat-icon">🎁</div>
+      <div class="cat-name">অন্যান্য</div>
+      <div class="cat-count" id="catOther">0 items</div>
+    </a>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products-section" id="products">
+  <div class="products-header">
+    <div>
+      <div class="section-label">আমাদের Collection</div>
+      <h2 class="section-title">All Products</h2>
+    </div>
+    <div class="filter-row">
+      <button class="filter-btn active" onclick="sortProducts('latest', this)">Latest</button>
+      <button class="filter-btn" onclick="sortProducts('price-low', this)">Price: Low</button>
+      <button class="filter-btn" onclick="sortProducts('price-high', this)">Price: High</button>
+    </div>
+  </div>
+  <div class="products-grid" id="productsGrid"></div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo">
+        <span class="logo-main">Thrifted Fashion</span>
+        <span class="logo-sub">কাপড় ও ইলেকট্রনিক্স</span>
+      </div>
+      <p>আপনার পছন্দের পোশাক আর ইলেকট্রনিক্স — সব এক জায়গায়। Quality-তে কোনো আপোষ নেই।</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#products">All Products</a></li>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#">About Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Category</h4>
+      <ul>
+        <li><a href="#">পুরুষের পোশাক</a></li>
+        <li><a href="#">মহিলার পোশাক</a></li>
+        <li><a href="#">Electronics</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>যোগাযোগ</h4>
+      <ul>
+        <li><a href="#">📞 01700-000000</a></li>
+        <li><a href="#">✉️ thriftedfashion@gmail.com</a></li>
+        <li><a href="#">📍 ঢাকা, বাংলাদেশ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Thrifted Fashion. All rights reserved.</span>
+    <span>Made with ❤️ in Bangladesh</span>
+  </div>
+</footer>
+
+<!-- ===== ADMIN MODAL ===== -->
+<div class="modal-overlay" id="adminModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 class="modal-title">⚙️ Admin Panel</h3>
+      <button class="modal-close" onclick="closeAdminModal()">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <!-- Password Gate -->
+      <div id="adminGate">
+        <div class="form-group">
+          <label>Admin Password</label>
+          <input type="password" class="form-input" id="adminPass" placeholder="পাসওয়ার্ড দিন..." onkeydown="if(event.key==='Enter') checkAdminPass()">
+        </div>
+        <button class="form-submit" onclick="checkAdminPass()">লগইন করুন</button>
+        <p style="font-size:0.78rem;color:var(--muted);margin-top:10px;text-align:center">Default password: <strong>admin123</strong></p>
+      </div>
+
+      <!-- Admin Content -->
+      <div id="adminContent" style="display:none">
+        <div class="admin-tabs">
+          <button class="admin-tab active" onclick="switchTab('add')">➕ নতুন Product</button>
+          <button class="admin-tab" onclick="switchTab('manage')">📦 Manage Products</button>
+          <button class="admin-tab" onclick="switchTab('settings')">⚙️ Settings</button>
+        </div>
+
+        <!-- ADD PRODUCT TAB -->
+        <div class="tab-content active" id="tabAdd">
+          <div class="form-group">
+            <label>Product এর নাম *</label>
+            <input type="text" class="form-input" id="pName" placeholder="যেমন: Premium Cotton Shirt">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Category *</label>
+              <select class="form-select" id="pCategory">
+                <option value="পুরুষ">👔 পুরুষের পোশাক</option>
+                <option value="মহিলা">👗 মহিলার পোশাক</option>
+                <option value="ইলেকট্রনিক্স">📱 Electronics</option>
+                <option value="অন্যান্য">🎁 অন্যান্য</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Badge</label>
+              <select class="form-select" id="pBadge">
+                <option value="">কোনো Badge নেই</option>
+                <option value="new">🟢 NEW</option>
+                <option value="sale">🔴 SALE</option>
+                <option value="hot">🟡 HOT</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>মূল্য (৳) *</label>
+              <input type="number" class="form-input" id="pPrice" placeholder="999">
+            </div>
+            <div class="form-group">
+              <label>আগের মূল্য (৳)</label>
+              <input type="number" class="form-input" id="pOldPrice" placeholder="1499">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>বিবরণ</label>
+            <textarea class="form-textarea" id="pDesc" placeholder="Product সম্পর্কে কিছু লিখুন..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Product ছবি (URL বা Upload)</label>
+            <input type="text" class="form-input" id="pImgUrl" placeholder="https://... অথবা নিচে upload করুন" oninput="previewImgUrl()">
+            <div style="margin:8px 0;text-align:center;color:var(--muted);font-size:0.8rem">— অথবা —</div>
+            <input type="file" id="pImgFile" accept="image/*" style="display:none" onchange="previewImgFile(this)">
+            <div class="img-preview-wrap" onclick="document.getElementById('pImgFile').click()">
+              <div class="img-placeholder-icon">📸</div>
+              <div class="img-placeholder-text">Click করে ছবি upload করুন</div>
+              <img id="imgPreview" src="" alt="">
+            </div>
+          </div>
+          <button class="form-submit" onclick="addProduct()">✅ Product যোগ করুন</button>
+        </div>
+
+        <!-- MANAGE TAB -->
+        <div class="tab-content" id="tabManage">
+          <div id="adminProductsList"></div>
+        </div>
+
+        <!-- SETTINGS TAB -->
+        <div class="tab-content" id="tabSettings">
+          <div class="form-group">
+            <label>Announce Bar Text</label>
+            <input type="text" class="form-input" id="setAnnounce" value="🎉 বিশেষ অফার: ৳500+ কেনাকাটায় ফ্রি ডেলিভারি!">
+          </div>
+          <div class="form-group">
+            <label>Admin Password পরিবর্তন</label>
+            <input type="password" class="form-input" id="newPass" placeholder="নতুন password">
+          </div>
+          <button class="form-submit" onclick="saveSettings()">💾 Settings সেভ করুন</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT PRODUCT MODAL -->
+<div class="modal-overlay" id="editModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 class="modal-title">✏️ Product Edit করুন</h3>
+      <button class="modal-close" onclick="closeEditModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="editId">
+      <div class="form-group">
+        <label>Product এর নাম *</label>
+        <input type="text" class="form-input" id="eName">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Category</label>
+          <select class="form-select" id="eCategory">
+            <option value="পুরুষ">👔 পুরুষের পোশাক</option>
+            <option value="মহিলা">👗 মহিলার পোশাক</option>
+            <option value="ইলেকট্রনিক্স">📱 Electronics</option>
+            <option value="অন্যান্য">🎁 অন্যান্য</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Badge</label>
+          <select class="form-select" id="eBadge">
+            <option value="">কোনো Badge নেই</option>
+            <option value="new">🟢 NEW</option>
+            <option value="sale">🔴 SALE</option>
+            <option value="hot">🟡 HOT</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>মূল্য (৳) *</label>
+          <input type="number" class="form-input" id="ePrice">
+        </div>
+        <div class="form-group">
+          <label>আগের মূল্য (৳)</label>
+          <input type="number" class="form-input" id="eOldPrice">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>বিবরণ</label>
+        <textarea class="form-textarea" id="eDesc"></textarea>
+      </div>
+      <div class="form-group">
+        <label>ছবি URL</label>
+        <input type="text" class="form-input" id="eImgUrl">
+      </div>
+      <button class="form-submit" onclick="saveEdit()">💾 পরিবর্তন সেভ করুন</button>
+    </div>
+  </div>
+</div>
+
+<!-- CART OVERLAY + DRAWER -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-drawer-header">
+    <h3 class="cart-drawer-title">🛒 আপনার Cart</h3>
+    <button class="modal-close" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-drawer-body" id="cartItems"></div>
+  <div class="cart-drawer-footer">
+    <div class="cart-total">
+      <span>মোট মূল্য</span>
+      <span id="cartTotal">৳0</span>
+    </div>
+    <button class="btn-checkout" onclick="checkout()">Order করুন 🚀</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ===== STATE =====
+let products = JSON.parse(localStorage.getItem('tf_products') || '[]');
+let cart = JSON.parse(localStorage.getItem('tf_cart') || '[]');
+let adminPassword = localStorage.getItem('tf_pass') || 'admin123';
+let currentFilter = 'all';
+let imgBase64 = '';
+
+// ===== SAMPLE PRODUCTS (first run) =====
+if (products.length === 0) {
+  products = [
+    { id: 1, name: 'Premium Polo Shirt', category: 'পুরুষ', price: 650, oldPrice: 950, desc: 'Soft cotton blend, ৩টি রঙে পাওয়া যাচ্ছে।', img: '', badge: 'new', date: Date.now() },
+    { id: 2, name: 'Wireless Earbuds', category: 'ইলেকট্রনিক্স', price: 1299, oldPrice: 1800, desc: 'Noise cancellation, 8-hour battery life.', img: '', badge: 'hot', date: Date.now()-1 },
+    { id: 3, name: 'Kurti Set', category: 'মহিলা', price: 899, oldPrice: '', desc: 'Eid collection — comfortable & stylish.', img: '', badge: 'sale', date: Date.now()-2 },
+  ];
+  saveProducts();
+}
+
+function saveProducts() {
+  localStorage.setItem('tf_products', JSON.stringify(products));
+}
+
+// ===== RENDER PRODUCTS =====
+function getIcon(cat) {
+  const icons = { 'পুরুষ': '👔', 'মহিলা': '👗', 'ইলেকট্রনিক্স': '📱', 'অন্যান্য': '🎁' };
+  return icons[cat] || '📦';
+}
+
+function renderProducts(list) {
+  const grid = document.getElementById('productsGrid');
+  if (!list.length) {
+    grid.innerHTML = `<div class="no-products"><div class="icon">📦</div><h3>কোনো Product নেই</h3><p>Admin Panel থেকে product যোগ করুন।</p></div>`;
+    return;
+  }
+  grid.innerHTML = list.map(p => `
+    <div class="product-card" id="pc-${p.id}">
+      <div class="product-img-wrap">
+        ${p.img ? `<img src="${p.img}" alt="${p.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="product-img-placeholder" style="display:none">${getIcon(p.category)}</div>` :
+          `<div class="product-img-placeholder">${getIcon(p.category)}</div>`}
+        ${p.badge ? `<span class="product-badge badge-${p.badge}">${p.badge.toUpperCase()}</span>` : ''}
+        <div class="product-actions-overlay">
+          <button class="quick-add" onclick="addToCart(${p.id})">🛒 Cart এ যোগ করুন</button>
+          <button class="wishlist-btn">❤️</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-category">${p.category}</div>
+        <div class="product-name">${p.name}</div>
+        ${p.desc ? `<div class="product-desc">${p.desc}</div>` : ''}
+        <div class="product-footer">
+          <div class="price-box">
+            <span class="price-main">৳${p.price.toLocaleString()}</span>
+            ${p.oldPrice ? `<span class="price-old">৳${p.oldPrice.toLocaleString()}</span>` : ''}
+          </div>
+          <button class="add-cart-btn" onclick="addToCart(${p.id})">যোগ করুন</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterProducts(cat) {
+  currentFilter = cat;
+  const list = cat === 'all' ? products : products.filter(p => p.category === cat || p.category.includes(cat));
+  renderProducts(list);
+}
+
+function sortProducts(type, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  let list = currentFilter === 'all' ? [...products] : products.filter(p => p.category === currentFilter || p.category.includes(currentFilter));
+  if (type === 'price-low') list.sort((a,b) => a.price - b.price);
+  else if (type === 'price-high') list.sort((a,b) => b.price - a.price);
+  else list.sort((a,b) => b.date - a.date);
+  renderProducts(list);
+}
+
+function setActiveCategory(el) {
+  document.querySelectorAll('.cat-card').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function updateCounts() {
+  const total = products.length;
+  document.getElementById('totalProducts').textContent = total;
+  document.getElementById('catAll').textContent = total + ' items';
+  ['পুরুষ','মহিলা','ইলেকট্রনিক্স','অন্যান্য'].forEach((cat, i) => {
+    const cnt = products.filter(p => p.category === cat || p.category.includes(cat)).length;
+    const ids = ['catMen','catWomen','catElec','catOther'];
+    document.getElementById(ids[i]).textContent = cnt + ' items';
+  });
+}
+
+// ===== CART =====
+function addToCart(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  const existing = cart.find(x => x.id === id);
+  if (existing) existing.qty++;
+  else cart.push({ id: p.id, name: p.name, price: p.price, img: p.img, category: p.category, qty: 1 });
+  localStorage.setItem('tf_cart', JSON.stringify(cart));
+  updateCartUI();
+  showToast(`✅ "${p.name}" Cart এ যোগ হয়েছে!`);
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(x => x.id !== id);
+  localStorage.setItem('tf_cart', JSON.stringify(cart));
+  updateCartUI();
+  renderCartDrawer();
+}
+
+function updateCartUI() {
+  const total = cart.reduce((s,x) => s + x.qty, 0);
+  document.getElementById('cartCount').textContent = total;
+}
+
+function renderCartDrawer() {
+  const el = document.getElementById('cartItems');
+  if (!cart.length) {
+    el.innerHTML = `<div class="empty-cart"><div style="font-size:3rem">🛒</div><p style="margin-top:12px">Cart খালি আছে</p></div>`;
+    document.getElementById('cartTotal').textContent = '৳0';
+    return;
+  }
+  el.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      <div class="cart-item-img">
+        ${item.img ? `<img src="${item.img}" alt="${item.name}">` : getIcon(item.category)}
+      </div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-price">৳${(item.price * item.qty).toLocaleString()} ${item.qty > 1 ? `(${item.qty}×)` : ''}</div>
+      </div>
+      <button class="cart-item-remove" onclick="removeFromCart(${item.id})">🗑️</button>
+    </div>
+  `).join('');
+  const total = cart.reduce((s,x) => s + x.price * x.qty, 0);
+  document.getElementById('cartTotal').textContent = '৳' + total.toLocaleString();
+}
+
+function toggleCart() {
+  const drawer = document.getElementById('cartDrawer');
+  const overlay = document.getElementById('cartOverlay');
+  const isOpen = drawer.classList.contains('open');
+  if (!isOpen) renderCartDrawer();
+  drawer.classList.toggle('open');
+  overlay.classList.toggle('show');
+}
+
+function checkout() {
+  if (!cart.length) { showToast('Cart খালি!'); return; }
+  const total = cart.reduce((s,x) => s + x.price * x.qty, 0);
+  showToast(`🎉 Order দেওয়া হয়েছে! মোট: ৳${total.toLocaleString()}`);
+  cart = [];
+  localStorage.setItem('tf_cart', JSON.stringify(cart));
+  updateCartUI();
+  renderCartDrawer();
+  setTimeout(() => toggleCart(), 1500);
+}
+
+// ===== ADMIN =====
+function openAdminModal() {
+  document.getElementById('adminModal').classList.add('show');
+  document.getElementById('adminContent').style.display = 'none';
+  document.getElementById('adminGate').style.display = 'block';
+  document.getElementById('adminPass').value = '';
+}
+
+function closeAdminModal() {
+  document.getElementById('adminModal').classList.remove('show');
+}
+
+function checkAdminPass() {
+  const val = document.getElementById('adminPass').value;
+  if (val === adminPassword) {
+    document.getElementById('adminGate').style.display = 'none';
+    document.getElementById('adminContent').style.display = 'block';
+    renderAdminList();
+  } else {
+    showToast('❌ ভুল পাসওয়ার্ড!');
+    document.getElementById('adminPass').style.borderColor = 'red';
+    setTimeout(() => document.getElementById('adminPass').style.borderColor = '', 1500);
+  }
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('tab' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.add('active');
+  if (tab === 'manage') renderAdminList();
+}
+
+function previewImgUrl() {
+  const url = document.getElementById('pImgUrl').value;
+  const preview = document.getElementById('imgPreview');
+  if (url) { preview.src = url; preview.style.display = 'block'; imgBase64 = ''; }
+  else preview.style.display = 'none';
+}
+
+function previewImgFile(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    imgBase64 = e.target.result;
+    document.getElementById('imgPreview').src = imgBase64;
+    document.getElementById('imgPreview').style.display = 'block';
+    document.getElementById('pImgUrl').value = '';
+  };
+  reader.readAsDataURL(file);
+}
+
+function addProduct() {
+  const name = document.getElementById('pName').value.trim();
+  const price = parseFloat(document.getElementById('pPrice').value);
+  if (!name) { showToast('❌ Product এর নাম দিন!'); return; }
+  if (!price || price <= 0) { showToast('❌ সঠিক মূল্য দিন!'); return; }
+
+  const img = imgBase64 || document.getElementById('pImgUrl').value.trim();
+  const newProduct = {
+    id: Date.now(),
+    name,
+    category: document.getElementById('pCategory').value,
+    price,
+    oldPrice: parseFloat(document.getElementById('pOldPrice').value) || '',
+    desc: document.getElementById('pDesc').value.trim(),
+    img,
+    badge: document.getElementById('pBadge').value,
+    date: Date.now()
+  };
+
+  products.unshift(newProduct);
+  saveProducts();
+  updateCounts();
+  filterProducts(currentFilter);
+  renderAdminList();
+  showToast(`✅ "${name}" যোগ করা হয়েছে!`);
+
+  // Reset form
+  ['pName','pPrice','pOldPrice','pDesc','pImgUrl'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('pBadge').value = '';
+  document.getElementById('imgPreview').style.display = 'none';
+  imgBase64 = '';
+}
+
+function renderAdminList() {
+  const el = document.getElementById('adminProductsList');
+  if (!products.length) {
+    el.innerHTML = '<p style="text-align:center;color:var(--muted);padding:30px 0">কোনো product নেই।</p>';
+    return;
+  }
+  el.innerHTML = products.map(p => `
+    <div class="admin-product-item">
+      <div class="admin-product-thumb">
+        ${p.img ? `<img src="${p.img}" alt="${p.name}" onerror="this.parentElement.innerHTML='${getIcon(p.category)}'">` : getIcon(p.category)}
+      </div>
+      <div class="admin-product-info">
+        <div class="admin-product-name">${p.name}</div>
+        <div class="admin-product-meta">${p.category} • ৳${p.price}</div>
+      </div>
+      <div class="admin-actions">
+        <button class="btn-edit" onclick="openEditModal(${p.id})">✏️ Edit</button>
+        <button class="btn-delete" onclick="deleteProduct(${p.id})">🗑️ Delete</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function deleteProduct(id) {
+  if (!confirm('এই product টি মুছে ফেলবেন?')) return;
+  products = products.filter(p => p.id !== id);
+  saveProducts();
+  updateCounts();
+  filterProducts(currentFilter);
+  renderAdminList();
+  showToast('🗑️ Product মুছে ফেলা হয়েছে।');
+}
+
+function openEditModal(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  document.getElementById('editId').value = id;
+  document.getElementById('eName').value = p.name;
+  document.getElementById('eCategory').value = p.category;
+  document.getElementById('eBadge').value = p.badge || '';
+  document.getElementById('ePrice').value = p.price;
+  document.getElementById('eOldPrice').value = p.oldPrice || '';
+  document.getElementById('eDesc').value = p.desc || '';
+  document.getElementById('eImgUrl').value = p.img || '';
+  closeAdminModal();
+  document.getElementById('editModal').classList.add('show');
+}
+
+function closeEditModal() {
+  document.getElementById('editModal').classList.remove('show');
+  openAdminModal();
+  document.getElementById('adminGate').style.display = 'none';
+  document.getElementById('adminContent').style.display = 'block';
+  switchTabDirect('manage');
+}
+
+function switchTabDirect(tab) {
+  document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.admin-tab')[1].classList.add('active');
+  document.getElementById('tabManage').classList.add('active');
+  renderAdminList();
+}
+
+function saveEdit() {
+  const id = parseInt(document.getElementById('editId').value);
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  p.name = document.getElementById('eName').value.trim();
+  p.category = document.getElementById('eCategory').value;
+  p.badge = document.getElementById('eBadge').value;
+  p.price = parseFloat(document.getElementById('ePrice').value);
+  p.oldPrice = parseFloat(document.getElementById('eOldPrice').value) || '';
+  p.desc = document.getElementById('eDesc').value.trim();
+  p.img = document.getElementById('eImgUrl').value.trim();
+  saveProducts();
+  updateCounts();
+  filterProducts(currentFilter);
+  document.getElementById('editModal').classList.remove('show');
+  showToast(`✅ "${p.name}" আপডেট হয়েছে!`);
+}
+
+function saveSettings() {
+  const newAnnounce = document.getElementById('setAnnounce').value;
+  const newPass = document.getElementById('newPass').value;
+  if (newAnnounce) document.querySelector('.announce-bar').textContent = newAnnounce;
+  if (newPass) { adminPassword = newPass; localStorage.setItem('tf_pass', newPass); }
+  showToast('✅ Settings সেভ হয়েছে!');
+}
+
+// ===== TOAST =====
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// Close modal on overlay click
+document.getElementById('adminModal').addEventListener('click', function(e) {
+  if (e.target === this) closeAdminModal();
+});
+document.getElementById('editModal').addEventListener('click', function(e) {
+  if (e.target === this) document.getElementById('editModal').classList.remove('show');
+});
+
+// ===== INIT =====
+filterProducts('all');
+updateCounts();
+updateCartUI();
+</script>
+</body>
+</html>
